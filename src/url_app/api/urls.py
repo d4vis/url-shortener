@@ -20,7 +20,7 @@ def shorten_url(
 def shorten_url(
     short_url: str,
     service: UrlService = Depends(),
-
 ):
     original_url = service.get_full_url(short_url)
-    return RedirectResponse(original_url)
+    original_url = original_url.__dict__
+    return RedirectResponse(original_url['full_url'])
